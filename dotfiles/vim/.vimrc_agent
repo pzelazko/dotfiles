@@ -1,0 +1,7 @@
+"source /home/pzelazko/custom_vim_settings.vim
+set makeprg=(cd\ build\ &&\ cmake\ ..\ &&\ make\ &&\ cd\ ../..)
+set path=~/workspace/sample_program
+
+"exclude some warnings
+compiler gcc
+set errorformat^=%-G%f:%l:\ %tarning:\ %m

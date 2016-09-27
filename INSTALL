@@ -1,0 +1,31 @@
+# the silver searcher
+on linux: https://github.com/ggreer/the_silver_searcher
+on windows/cygwin: https://github.com/ggreer/the_silver_searcher/wiki/Windows
+on cywgin:
+if you don't have apt-cyg
+wget rawgit.com/transcode-open/apt-cyg/master/apt-cyg
+install apt-cyg /bin
+then
+apt-cyg install automake pkg-config gcc-core libpcre-devel liblzma-devel make
+git clone git://github.com/ggreer/the_silver_searcher.git
+cd the_silver_searcher
+./build.sh && make install
+
+
+# fonts for vim:
+https://github.com/powerline/fonts
+https://github.com/nicolalamacchia/powerline-consolas
+
+#solarized colorscheme for mate terminal:
+https://github.com/oz123/solarized-mate-terminal
+
+# YouCompleteMe
+Use this: https://github.com/rdnetto/YCM-Generator.git to auto-generate .ycm_extra_conf.py
+On Cygwin there's a compilation error, you need to edit two lines in wrap_python.hpp:
+Lines 85 and 86 the second condition (defined(__CYGWIN__))
+
+#Mapping CapsLock
+AutoHotKey allows to create scripts for key bindings (eg. CapsLock for both Esc and lCtrl keys)
+On http://blog.danskingdom.com/category/windows-8/ there's a description on how to execute AutHotKey
+on Windows startup - you need to create Task on logon with highest privileges.
+Alternatively, *.reg files create key bindings.

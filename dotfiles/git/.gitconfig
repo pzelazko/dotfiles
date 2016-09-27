@@ -1,0 +1,24 @@
+[user]
+    email = zelazko.pawel@gmail.com
+    name = Paweł Żelazko
+[push]
+    default = simple
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    dc = diff --cached
+    pom = push origin master
+    tree = log --graph --all --decorate --oneline
+[merge]
+    tool = vimdiff
+[core]
+    autocrlf = input
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
