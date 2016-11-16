@@ -43,6 +43,7 @@ endif
 Plugin 'Yggdroot/indentLine.git'
 Plugin 'jeetsukumaran/vim-buffergator.git'
 Plugin 'fatih/vim-go.git'
+Plugin 'sjl/gundo.vim'
 
 
 " All of your Plugins must be added before the following line
@@ -117,7 +118,9 @@ imap jj <ESC>
 
 " natural UP/DOWN movement in wrapperd line
 nnoremap j gj
+nnoremap gj j
 nnoremap k gk
+nnoremap gk k
 
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -125,23 +128,24 @@ cnoremap <C-n> <Down>
 " close buffer without closing split
 nnoremap <C-c> :bp\|bd # <CR>
 
-" save all buffers and run make without going to first error
-map <F5> <ESC>:wa<CR>:make! <CR>
-imap <F5> <ESC>:wa<CR>:make! <CR>
-nnoremap <Leader>co :wa<CR>:make! <CR>
-nnoremap <Leader>te :make! test <CR>
+" save all buffers and run Make without going to first error
+noremap <F5> <ESC>:wa<CR>:make! <CR>
+inoremap <F5> <ESC>:wa<CR>:make! <CR>
+noremap <Leader>co :wa<CR>:make! <CR>
 
 " toggle spell check with <F12>
 map <F12> :setlocal spell! spelllang=en_us<CR>
 imap <F12> <ESC>:setlocal spell! spelllang=en_us<CR>
 
-nnoremap <C-n> :call NumberToggle()<CR>
+map <C-n> :call NumberToggle()<CR>
 map <leader>n :call RenameFile()<CR>
 map <F8> :call ToggleMouse()<CR>
 map <F7> :call ToggleBackground()<CR>
 
 " print full current file path
 nnoremap <Leader>w :wa<CR>:echo @% <CR>
+
+nnoremap <BS> <C-^>
 
 " #############################################################
 " Functions

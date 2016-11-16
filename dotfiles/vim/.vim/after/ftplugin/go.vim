@@ -19,6 +19,8 @@ nmap <Leader>re <Plug>(go-referrers)
 nmap <Leader>i <Plug>(go-info)
 nmap <Leader>e <Plug>(go-rename)
 
+nmap <Leader>li :wa<CR> :GoMetaLinter<CR>
+
 " :he go-mapping for other <Plug> mappings; create new with :he go-commands
 
 let g:go_doc_keywordprg_enabled = 0 " disable 'K' mapping
