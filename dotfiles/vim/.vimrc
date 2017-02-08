@@ -44,6 +44,10 @@ Plugin 'Yggdroot/indentLine.git'
 Plugin 'jeetsukumaran/vim-buffergator.git'
 Plugin 'fatih/vim-go.git'
 Plugin 'sjl/gundo.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'jiangmiao/auto-pairs.git'
+Plugin 'python-mode/python-mode.git'
 
 
 " All of your Plugins must be added before the following line
@@ -126,7 +130,7 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " close buffer without closing split
-nnoremap <C-c> :bp\|bd # <CR>
+nnoremap <C-q> :bp\|bd # <CR>
 
 " save all buffers and run Make without going to first error
 noremap <F5> <ESC>:wa<CR>:make! <CR>
@@ -244,6 +248,7 @@ endif
 map <F2> :NERDTreeToggle<CR>
 " close vim when the only window open is NERDTRee
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeIgnore=['\.pyc$', '\~$']
 
 
 " The Silver Searcher
@@ -317,11 +322,26 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 "let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_confirm_extra_conf = 1
 "let g:ycm_always_populate_location_list = 1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 " speed-up gitgutter
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
+
 " go-vim
 let g:go_doc_keywordprg_enabled = 0 " disable 'K' mapping
+
+
+" ultisnips trigger - TAB is reserved for YCM
+let g:UltiSnipsExpandTrigger="<c-b>"
+
+
+" python-mode
+let g:pymode_python='python3'
+let python_highlight_all=1
+let g:pymode_folding=0
+let g:pymode_rope_goto_definition_cmd = 'e'
+" avoid K mapping overlap
+let g:pymode_doc_bind = ''

@@ -5,6 +5,8 @@ nmap <leader>r :wa<CR> <Plug>(go-run)
 nmap <leader>b :wa<CR> <Plug>(go-build)
 nmap <leader>in :wa<CR> <Plug>(go-install)
 nmap <leader>t :wa<CR> <Plug>(go-test)
+nmap <leader>tf :wa<CR> <Plug>(go-test-func)
+nmap <leader>co :wa<CR> <Plug>(go-coverage)
 
 nmap <Leader>ds <Plug>(go-def-split)
 nmap <Leader>dv <Plug>(go-def-vertical)
