@@ -46,7 +46,6 @@ Plugin 'fatih/vim-go.git'
 Plugin 'sjl/gundo.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'jiangmiao/auto-pairs.git'
 Plugin 'python-mode/python-mode.git'
 
 
@@ -121,10 +120,10 @@ imap <right> <nop>
 imap jj <ESC>
 
 " natural UP/DOWN movement in wrapperd line
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
+"nnoremap j gj
+"nnoremap gj j
+"nnoremap k gk
+"nnoremap gk k
 
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -264,7 +263,7 @@ endif
 " bind K to grep word under cursor
 nnoremap K :Ag! "\b<C-R><C-W>\b" --ignore tags --ignore cscope.out<CR>:cw<CR>
 " bind \ (backward slash) to grep shortcut
-nnoremap \ :Ag<SPACE>
+nnoremap \ :Ag --ignore tags<SPACE>
 
 
 " CtrlP
