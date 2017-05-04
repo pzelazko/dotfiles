@@ -15,6 +15,7 @@
     tool = vimdiff
 [core]
     autocrlf = input
+    editor = vim
 [color]
     diff = auto
     status = auto

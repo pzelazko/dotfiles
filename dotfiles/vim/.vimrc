@@ -107,29 +107,13 @@ let mapleader = ","
 
 nnoremap <leader>c :nohl<CR>
 
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
 imap jj <ESC>
-
-" natural UP/DOWN movement in wrapperd line
-"nnoremap j gj
-"nnoremap gj j
-"nnoremap k gk
-"nnoremap gk k
 
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " close buffer without closing split
-nnoremap <C-q> :bp\|bd # <CR>
+nnoremap <C-c> :bp\|bd # <CR>
 
 " save all buffers and run Make without going to first error
 noremap <F5> <ESC>:wa<CR>:make! <CR>
@@ -146,7 +130,8 @@ map <F8> :call ToggleMouse()<CR>
 map <F7> :call ToggleBackground()<CR>
 
 " print full current file path
-nnoremap <Leader>w :wa<CR>:echo @% <CR>
+nnoremap <Leader>i :echo @%<CR>
+nnoremap <Leader>w :w<CR>
 
 nnoremap <BS> <C-^>
 
