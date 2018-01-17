@@ -29,3 +29,21 @@ AutoHotKey allows to create scripts for key bindings (eg. CapsLock for both Esc 
 On http://blog.danskingdom.com/category/windows-8/ there's a description on how to execute AutHotKey
 on Windows startup - you need to create Task on logon with highest privileges.
 Alternatively, *.reg files create key bindings.
+
+#Forwarding X11 on Windows:
+#From http://kflu.github.io/2017/01/24/2017-01-24-win-x11-forward/
+On server:
+1. Add to /etc/ssh/sshd_config:
+AllowAgentForwarding yes
+AllowTcpForwarding yes
+X11Forwarding yes
+X11DisplayOffset 10
+X11UseLocalhost no
+2. Restart sshd - `service sshd restart`
+3. Ensure xauth is installed
+On client:
+4.Run xming x server and in terminal (e.g. mintty) put:
+export DISPLAY=localhost:0.0
+ssh -Y <ssh server>
+5. Check if it's working with `xclock`
+6. You can use vim clipboard now
