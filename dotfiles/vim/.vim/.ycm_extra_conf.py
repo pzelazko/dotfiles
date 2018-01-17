@@ -16,6 +16,7 @@
 # along with ycmd.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import glob
 import ycm_core
 
 # These are the compilation flags that will be used in case there's no
@@ -57,7 +58,18 @@ flags = [
 #
 # Most projects will NOT need to set this to anything; you can just change the
 # 'flags' list of compilation flags.
-compilation_database_folder = ''
+
+# Taken from https://github.com/Valloric/YouCompleteMe/issues/174
+def FindCompilationDB ():
+  DB = glob.glob ('*/compile_commands.json')
+  if len (DB) == 0:
+    return ''
+
+  # return the first one we see
+  path = os.getcwd() + '/' + DB[0]
+  return os.path.dirname (path)
+
+compilation_database_folder = FindCompilationDB()
 
 if os.path.exists( compilation_database_folder ):
   database = ycm_core.CompilationDatabase( compilation_database_folder )

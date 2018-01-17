@@ -17,13 +17,12 @@ Plugin 'tpope/vim-sensible.git'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'kaneshin/ctrlp-git-log.git'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
@@ -31,22 +30,20 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'christoomey/vim-tmux-navigator.git'
 Plugin 'altercation/vim-colors-solarized'
-if has("unix" ) && !has("win32unix")
-" YCM on cygwin introduce delay and clang is not working
-Plugin 'Valloric/YouCompleteMe.git'
-Plugin 'rdnetto/YCM-Generator.git'
-endif
-" use when YCM syntax checking isn't enough
-"Plugin 'scrooloose/syntastic.git'
-" useful in python
-"Plugin 'nathanaelkane/vim-indent-guides.git'
-Plugin 'Yggdroot/indentLine.git'
-Plugin 'jeetsukumaran/vim-buffergator.git'
 Plugin 'fatih/vim-go.git'
-Plugin 'sjl/gundo.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 Plugin 'python-mode/python-mode.git'
+Plugin 'Chiel92/vim-autoformat'
+if has("unix" ) && !has("win32unix")
+    "" YCM on cygwin introduce delay and clang is not working
+    Plugin 'Valloric/YouCompleteMe.git'
+    "Use for generating config for YouCompleteMe when cmake
+    "compile_commands.json file is not available
+    "Plugin 'rdnetto/YCM-Generator.git'
+endif
+ "use when YCM syntax checking isn't enough
+"Plugin 'scrooloose/syntastic.git'
+ "useful in python
+"Plugin 'Yggdroot/indentLine.git'
 
 
 " All of your Plugins must be added before the following line
@@ -109,16 +106,13 @@ nnoremap <leader>c :nohl<CR>
 
 imap jj <ESC>
 
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-
 " close buffer without closing split
 nnoremap <C-c> :bp\|bd # <CR>
 
 " save all buffers and run Make without going to first error
 noremap <F5> <ESC>:wa<CR>:make! <CR>
 inoremap <F5> <ESC>:wa<CR>:make! <CR>
-noremap <Leader>co :wa<CR>:make! <CR>
+noremap <leader>co :wa<CR>:make! <CR>
 
 " toggle spell check with <F12>
 map <F12> :setlocal spell! spelllang=en_us<CR>
@@ -131,8 +125,8 @@ map <F7> :call ToggleBackground()<CR>
 
 " print full current file path
 nnoremap <Leader>i :echo @%<CR>
-nnoremap <Leader>w :w<CR>
 
+" backspace goes to previous buffer
 nnoremap <BS> <C-^>
 
 " #############################################################
@@ -140,22 +134,22 @@ nnoremap <BS> <C-^>
 " #############################################################
 
 function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-  else
-    set relativenumber
-  endif
+    if(&relativenumber == 1)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
 endfunc
 
 " rename current file, via Gary Bernhardt
 function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'))
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' . old_name
-    redraw!
-  endif
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'))
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
 endfunction
 
 " mouse toggle
@@ -208,7 +202,7 @@ let g:airline#extensions#hunks#enabled=1 " enable hunks
 let g:airline#extensions#branch#enabled=1 " show branch name
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 " unicode symbols - use if no powerline fonts are used
 "let g:airline_left_sep = '»'
@@ -237,13 +231,13 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " The Silver Searcher
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor " Use ag over grep
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
 endif
 " bind K to grep word under cursor
 nnoremap K :Ag! "\b<C-R><C-W>\b" --ignore tags --ignore cscope.out<CR>:cw<CR>
@@ -278,17 +272,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " disable checking by default. Run :SyntasticCheck to run checking
 let g:syntastic_mode_map = {
-    \ "mode": "passive",
-    \ "active_filetypes": [],
-    \ "passive_filetypes": [] }
-
-
-" YCM
-if has("unix" ) && !has("win32unix")
-    "default config file for c languages
-    let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-endif
-
+            \ "mode": "passive",
+            \ "active_filetypes": [],
+            \ "passive_filetypes": [] }
 
 " indentLine
 let g:indentLine_faster = 1
@@ -296,16 +282,14 @@ let g:indentLine_indentLevel = 100
 
 
 " YouCompleteMe
+" collect tags from ctags
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_min_num_identifier_candidate_chars = 3
-let g:ycm_filetype_whitelist = { '*': 1 }
+" start autocompletion after X characters typed
+"let g:ycm_min_num_identifier_candidate_chars = 3
+" turn off preview window after completion
 let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_autoclose_preview_window_after_insertion = 1
-" turn off preview window
-"set completeopt-=preview
-"let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_confirm_extra_conf = 1
-"let g:ycm_always_populate_location_list = 1
+"default config file for c languages
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
