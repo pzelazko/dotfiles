@@ -184,7 +184,9 @@ set background=light " solarized theme - dark/light
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1 " set this when background is dark
 let g:solarized_contrast="high"
-colorscheme solarized
+if filereadable($HOME . "/.vim/bundle/vim-colors-solarized/colors/solarized.vim")
+    colorscheme solarized
+endif
 
 
 " #############################################################
