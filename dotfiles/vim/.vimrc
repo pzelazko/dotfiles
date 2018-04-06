@@ -33,6 +33,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'fatih/vim-go.git'
 Plugin 'python-mode/python-mode.git'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'tpope/vim-dispatch.git'
 if has("unix" ) && !has("win32unix")
     "" YCM on cygwin introduce delay and clang is not working
     Plugin 'Valloric/YouCompleteMe.git'
@@ -110,9 +111,9 @@ imap jj <ESC>
 nnoremap <C-c> :bp\|bd # <CR>
 
 " save all buffers and run Make without going to first error
-noremap <F5> <ESC>:wa<CR>:make! <CR>
-inoremap <F5> <ESC>:wa<CR>:make! <CR>
-noremap <leader>co :wa<CR>:make! <CR>
+noremap <F5> <ESC>:wa<CR>:Make <CR>
+inoremap <F5> <ESC>:wa<CR>:Make <CR>
+noremap <leader>co :wa<CR>:Make <CR>
 
 " toggle spell check with <F12>
 map <F12> :setlocal spell! spelllang=en_us<CR>
