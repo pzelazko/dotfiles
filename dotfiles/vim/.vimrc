@@ -21,7 +21,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'rking/ag.vim'
+Plugin 'jremmen/vim-ripgrep.git'
 Plugin 'majutsushi/tagbar'
 Plugin 'gregsexton/gitv'
 Plugin 'airblade/vim-gitgutter'
@@ -94,6 +94,7 @@ set autoread
 set ttymouse=xterm2
 set noerrorbells visualbell t_vb= " disable beep and flash with autocmd
 autocmd GUIEnter * set vb t_vb=
+set wildignore+=*/.git/*,*/tmp/*,*.swp,cscope.out,tags
 
 
 " #############################################################
@@ -207,21 +208,6 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-" unicode symbols - use if no powerline fonts are used
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.crypt = '🔒'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.notexists = '∄'
-"let g:airline_symbols.whitespace = 'Ξ'
 
 
 " NERDTree
@@ -232,20 +218,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeIgnore=['\.pyc$', '\~$']
 
 
-" The Silver Searcher
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor " Use ag over grep
-
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
+" ripgrep
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  " Use Rg in CtrlP for listing files
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  " Rg is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
 endif
-" bind K to grep word under cursor
-nnoremap K :Ag! "\b<C-R><C-W>\b" --ignore tags --ignore cscope.out<CR>:cw<CR>
-" bind \ (backward slash) to grep shortcut
-nnoremap \ :Ag --ignore tags<SPACE>
 
 
 " CtrlP

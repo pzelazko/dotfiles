@@ -27,6 +27,8 @@ Alternatively, \*.reg files create key bindings.
 
 You can find ready-to-use scripts in [scripts](scripts).
 
+For Ubuntu, install xcape tool.
+
 # Forwarding X11 on Windows
 Taken from http://kflu.github.io/2017/01/24/2017-01-24-win-x11-forward/.
 
