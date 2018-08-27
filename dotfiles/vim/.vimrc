@@ -2,67 +2,47 @@
 " Vundle plugins
 " #############################################################
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-sensible.git'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround.git'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'jremmen/vim-ripgrep.git'
-Plugin 'majutsushi/tagbar'
-Plugin 'gregsexton/gitv'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'christoomey/vim-tmux-navigator.git'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'fatih/vim-go.git'
-Plugin 'python-mode/python-mode.git'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'tpope/vim-dispatch.git'
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'majutsushi/tagbar'
+Plug 'gregsexton/gitv'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'altercation/vim-colors-solarized'
+Plug 'fatih/vim-go'
+Plug 'python-mode/python-mode'
+Plug 'Chiel92/vim-autoformat'
+Plug 'tpope/vim-dispatch'
 if has("unix" ) && !has("win32unix")
     "" YCM on cygwin introduce delay and clang is not working
-    Plugin 'Valloric/YouCompleteMe.git'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
     "Use for generating config for YouCompleteMe when cmake
     "compile_commands.json file is not available
-    "Plugin 'rdnetto/YCM-Generator.git'
+    "Plug 'rdnetto/YCM-Generator.git'
 endif
  "use when YCM syntax checking isn't enough
-"Plugin 'scrooloose/syntastic.git'
+"Plug 'scrooloose/syntastic.git'
  "useful in python
-"Plugin 'Yggdroot/indentLine.git'
+"Plug 'Yggdroot/indentLine.git'
 
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
+" Initialize plugin system
+call plug#end()
 
 " #############################################################
 " Settings
@@ -186,7 +166,7 @@ set background=light " solarized theme - dark/light
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1 " set this when background is dark
 let g:solarized_contrast="high"
-if filereadable($HOME . "/.vim/bundle/vim-colors-solarized/colors/solarized.vim")
+if filereadable($HOME . "/.vim/plugged/vim-colors-solarized/colors/solarized.vim")
     colorscheme solarized
 endif
 
