@@ -7,7 +7,6 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-Plug 'VundleVim/Vundle.vim'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
@@ -15,7 +14,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'majutsushi/tagbar'
 Plug 'gregsexton/gitv'
@@ -29,6 +27,9 @@ Plug 'fatih/vim-go'
 Plug 'python-mode/python-mode'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-dispatch'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
 if has("unix" ) && !has("win32unix")
     "" YCM on cygwin introduce delay and clang is not working
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
@@ -110,6 +111,9 @@ nnoremap <Leader>i :echo @%<CR>
 
 " backspace goes to previous buffer
 nnoremap <BS> <C-^>
+
+map <C-p> :Files<cr>
+map <leader>m :FZFMru<cr>
 
 " #############################################################
 " Functions
@@ -205,16 +209,11 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   " Rg is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
+  " bind K to grep word under cursor
+  nnoremap K :Rg "<C-R><C-W>"<CR>:cw<CR>
+  " bind \ (backward slash) to grep shortcut
+  nnoremap \ :Rg<SPACE>
 endif
-
-
-" CtrlP
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
-            \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
-let g:ctrlp_max_height = 30
-let g:ctrlp_working_path_mode = 0 " not using nearest .(.git|hg|svn) folder as the root
-nnoremap <leader>m :CtrlPMRUFiles<CR>
-nnoremap <leader>. :CtrlPTag<CR>
 
 
 " ctags and cscope
@@ -276,3 +275,34 @@ let g:pymode_folding=0
 let g:pymode_rope_goto_definition_cmd = 'e'
 " avoid K mapping overlap
 let g:pymode_doc_bind = ''
+
+
+" fzf
+command! -bang -nargs=* Find
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)

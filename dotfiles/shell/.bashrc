@@ -16,3 +16,5 @@ for config in "$HOME"/.shellrc/rc.d/*.sh ; do
 done
 
 unset -v config
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

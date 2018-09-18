@@ -40,20 +40,20 @@ function copy_cygwin
   fi
 }
 
-function check_ag
+function check_rg
 {
-  command -v ag &> /dev/null
+  command -v rg &> /dev/null
   OUT=$?
   if [ $OUT -eq 0 ]; then
-    echo "ag installed."
+    echo "rg installed."
   else
-    echo "ag not found."
+    echo "rg not found."
   fi
 }
 
 function install_vim_plugins
 {
-  vim +PluginUpdate +qall
+  vim +PlugUpdate +qall
 }
 
 copy_shell
@@ -61,5 +61,5 @@ copy_git
 copy_tmux
 copy_vim
 copy_cygwin
-check_ag
+check_rg
 install_vim_plugins
