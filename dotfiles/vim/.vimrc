@@ -24,7 +24,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/vim-go'
-Plug 'python-mode/python-mode'
+Plug 'python-mode/python-mode', { 'do': 'pip3 install GitPython' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-dispatch'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -210,7 +210,7 @@ if executable('rg')
   " Rg is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
   " bind K to grep word under cursor
-  nnoremap K :Rg "<C-R><C-W>"<CR>:cw<CR>
+  nnoremap K :Rg "<C-R><C-W>"
   " bind \ (backward slash) to grep shortcut
   nnoremap \ :Rg<SPACE>
 endif

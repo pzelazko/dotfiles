@@ -1,9 +1,7 @@
 # Tips
-# The Silver Searcher
-It's a code searching tool much faster than grep.
-* On linux: https://github.com/ggreer/the_silver_searcher
-* On windows/cygwin: https://github.com/ggreer/the_silver_searcher/wiki/Windows
-
+# Ripgrep
+It's a search tool much faster than grep.
+https://github.com/BurntSushi/ripgrep
 
 # Powerline Fonts
 Required for fancy airline symbols.
