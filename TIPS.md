@@ -3,11 +3,20 @@
 It's a search tool much faster than grep.
 https://github.com/BurntSushi/ripgrep
 
-# Powerline Fonts
-Required for fancy airline symbols.
+# Customized Fonts
+Required for fancy symbols in your terminal.
+
+## Nerd Fonts (recommended)
+https://github.com/ryanoasis/nerd-fonts
+recommended for Ubuntu:
+https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete.ttf
+
+## Powerline Fonts
 https://github.com/powerline/fonts
 
-solarized colorscheme for mate terminal:
+# Terminal color schemes
+## Mater terminal
+solarized colorscheme:
 https://github.com/oz123/solarized-mate-terminal
 
 # YouCompleteMe

@@ -30,6 +30,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
+Plug 'ryanoasis/vim-devicons'
 if has("unix" ) && !has("win32unix")
     "" YCM on cygwin introduce delay and clang is not working
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
