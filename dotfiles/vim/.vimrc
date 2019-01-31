@@ -37,10 +37,6 @@ if has("unix" ) && !has("win32unix")
     "compile_commands.json file is not available
     "Plug 'rdnetto/YCM-Generator.git'
 endif
- "use when YCM syntax checking isn't enough
-"Plug 'scrooloose/syntastic.git'
- "useful in python
-"Plug 'Yggdroot/indentLine.git'
 
 " Initialize plugin system
 call plug#end()
@@ -50,7 +46,7 @@ call plug#end()
 " #############################################################
 
 syntax on
-set cindent
+filetype indent on
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -76,6 +72,7 @@ set ttymouse=xterm2
 set noerrorbells visualbell t_vb= " disable beep and flash with autocmd
 autocmd GUIEnter * set vb t_vb=
 set wildignore+=*/.git/*,*/tmp/*,*.swp,cscope.out,tags
+set nofixendofline " don't add new line at the end automatically
 
 
 " #############################################################
@@ -108,6 +105,8 @@ map <F7> :call ToggleBackground()<CR>
 
 " print full current file path
 nnoremap <Leader>i :echo @%<CR>
+" write file
+nnoremap <leader>w :w<CR>
 
 " backspace goes to previous buffer
 nnoremap <BS> <C-^>
