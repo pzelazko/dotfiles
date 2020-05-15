@@ -1,10 +1,12 @@
 #!/bin/bash
 
 dotfiles="`pwd`/dotfiles"
-destination=$HOME
+destination="$HOME/"
 minttyrc=.minttyrc_solarized_light
-copy_command="cp -sfR"
+#copy_command="cp -fR"
+copy_command="ln -fs"
 
+echo "destination: $destination"
 function copy_shell
 {
   $copy_command $dotfiles/shell/. $destination
@@ -12,7 +14,7 @@ function copy_shell
 
 function copy_git
 {
-  $copy_command $dotfiles/git/. $destination
+  $copy_command $dotfiles/git/.gitconfig $destination
 }
 
 function copy_tmux
@@ -56,10 +58,10 @@ function install_vim_plugins
   vim +PlugUpdate +qall
 }
 
-copy_shell
+#copy_shell
 copy_git
-copy_tmux
-copy_vim
-copy_cygwin
-check_rg
-install_vim_plugins
+#copy_tmux
+#copy_vim
+#copy_cygwin
+#check_rg
+#install_vim_plugins
