@@ -37,6 +37,13 @@ You can find ready-to-use scripts in [scripts](scripts).
 ## Ubuntu
 For Ubuntu, install xcape tool.
 
+## Mac
+Use Karabiner tool. Copy scripts/custom_capslock.json to ~/.config/karabiner/assets/complex_modifications/ and choose this modification in Karabiner application (complex modification).
+Add simple modification: caps_lock -> left_control.
+
+https://medium.com/@pechyonkin/how-to-map-capslock-to-control-and-escape-on-mac-60523a64022b
+https://www.saltycrane.com/blog/2017/07/how-map-caps-lock-escape-when-tapped-and-control-when-held-mac-os-sierra/
+
 # Forwarding X11 on Windows
 Taken from http://kflu.github.io/2017/01/24/2017-01-24-win-x11-forward/.
 

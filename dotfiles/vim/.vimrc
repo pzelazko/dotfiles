@@ -28,7 +28,7 @@ Plug 'maralla/completor.vim'
 Plug 'python-mode/python-mode', { 'do': 'pip3 install GitPython' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-dispatch'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'ryanoasis/vim-devicons'
