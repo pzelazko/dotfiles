@@ -7,38 +7,63 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+" general
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
+
+" text edition
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'jremmen/vim-ripgrep'
+
+" navigation
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
-Plug 'gregsexton/gitv'
+
+" search
+Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
+
+" auto-completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+      \ 'coc-tsserver'
+  \ ]
+"Plug 'maralla/completor.vim'
+
+" building
+Plug 'tpope/vim-dispatch'
+
+" formatting
+Plug 'Chiel92/vim-autoformat'
+
+" git
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'gregsexton/gitv'
+
+" style
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'altercation/vim-colors-solarized'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'maralla/completor.vim'
-Plug 'python-mode/python-mode', { 'do': 'pip3 install GitPython' }
-Plug 'Chiel92/vim-autoformat'
-Plug 'tpope/vim-dispatch'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'pbogut/fzf-mru.vim'
 Plug 'ryanoasis/vim-devicons'
-if has("unix" ) && !has("win32unix")
-    "" YCM on cygwin introduce delay and clang is not working
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-    "Use for generating config for YouCompleteMe when cmake
-    "compile_commands.json file is not available
-    "Plug 'rdnetto/YCM-Generator.git'
-endif
+
+" highlighting
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'jparise/vim-graphql'
+
+" Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Python
+Plug 'python-mode/python-mode', { 'do': 'pip3 install GitPython' }
 
 " Initialize plugin system
 call plug#end()
@@ -242,18 +267,6 @@ let g:syntastic_mode_map = {
 " indentLine
 let g:indentLine_faster = 1
 let g:indentLine_indentLevel = 100
-
-
-" YouCompleteMe
-" collect tags from ctags
-let g:ycm_collect_identifiers_from_tags_files = 1
-" start autocompletion after X characters typed
-"let g:ycm_min_num_identifier_candidate_chars = 3
-" turn off preview window after completion
-let g:ycm_autoclose_preview_window_after_completion = 1
-"default config file for c languages
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 " speed-up gitgutter
