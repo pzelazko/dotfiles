@@ -68,3 +68,11 @@ ssh -Y <ssh server>
 4. Check if it's working with `xclock`
 
 bonus: now you can share clipboard between Vim and Windows
+
+# Performance
+
+## Cursor speed on Mac
+https://stackoverflow.com/questions/23078078/speed-up-vim-cursor-moving-through-j-k
+
+## Slow zsh prompt - git status performed after each compile_command
+https://github.com/ohmyzsh/ohmyzsh/discussions/9849

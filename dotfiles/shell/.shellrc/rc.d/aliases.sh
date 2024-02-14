@@ -17,6 +17,8 @@ alias fgrep='fgrep --color=auto'
 
 #git
 alias g='git'
+alias gst='git status'
+alias gstu='git status -u no'
 
 #copying from terminal to the system clipboard
 alias pbcopy='xclip -selection clipboard'
